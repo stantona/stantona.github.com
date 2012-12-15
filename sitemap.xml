@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
+    <url>
+        <loc>
+            http://stantona.github.com/blog/2012/12/12/a-tale-of-two-object-models-javascript-and-ruby/
+        </loc>
+        <lastmod>2012-12-15T15:55:18-08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://stantona.github.com/about/</loc>
+        <lastmod>2012-12-12T23:14:03-08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://stantona.github.com/blog/archives/</loc>
+        <lastmod>2012-12-15T15:55:18-08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://stantona.github.com/</loc>
+        <lastmod>2012-12-15T15:55:18-08:00</lastmod>
+    </url>
+</urlset>

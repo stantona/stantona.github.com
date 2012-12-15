@@ -1,97 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>stantona</title>
-  <meta name="author" content="Adam Stanton">
-
-  
-  <meta name="description" content="This past year I&#8217;ve been developing a web application with Ruby on Rails and javascript, and although javascript
-is not a new language for me, &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://stantona.github.com/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="stantona" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-
-  <script type="text/javascript" src="//use.typekit.net/kdu0wub.js"></script>
-  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-</head>
-
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">stantona</a></h1>
-  
-    <h2>Thoughts from a programmer.</h2>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/about">About</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+  <title><![CDATA[Category: Fundamentals | stantona]]></title>
+  <link href="http://stantona.github.com/blog/categories/fundamentals/atom.xml" rel="self"/>
+  <link href="http://stantona.github.com/"/>
+  <updated>2012-12-15T15:58:36-08:00</updated>
+  <id>http://stantona.github.com/</id>
+  <author>
+    <name><![CDATA[Adam Stanton]]></name>
     
-      <h1 class="entry-title"><a href="/blog/2012/12/12/a-tale-of-two-object-models-javascript-and-ruby/">A Tale of Two Object Models: Javascript and Ruby (Part 1)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-
-
-<time datetime="2012-12-12T23:22:00-08:00" pubdate data-updated="true">Dec 12<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This past year I&#8217;ve been developing a web application with Ruby on Rails and javascript, and although javascript
-is not a new language for me, I&#8217;ve had an amazing time learning Ruby and it&#8217;s powerful metaprogramming capabilities.
-As I regularly switch between the two languages (as you do buidling web applications) I&#8217;ve recently found myself comparing the two
+  <entry>
+    <title type="html"><![CDATA[A tale of two object models: Javascript and Ruby (Part 1)]]></title>
+    <link href="http://stantona.github.com/blog/2012/12/12/a-tale-of-two-object-models-javascript-and-ruby/"/>
+    <updated>2012-12-12T23:22:00-08:00</updated>
+    <id>http://stantona.github.com/blog/2012/12/12/a-tale-of-two-object-models-javascript-and-ruby</id>
+    <content type="html"><![CDATA[<p>This past year I've been developing a web application with Ruby on Rails and javascript, and although javascript
+is not a new language for me, I've had an amazing time learning Ruby and it's powerful metaprogramming capabilities.
+As I regularly switch between the two languages (as you do buidling web applications) I've recently found myself comparing the two
 object models. I thought I would give my own personal take on the object models of
 both languages, cementing the fundamental differences while demonstrating the similarities. Since this is a loaded topic, this will be a multi-part
 series (hopefully no more than four).</p>
@@ -120,7 +49,7 @@ obj.name = "Adam"
 obj["name"] = "Adam";
 </code></pre>
 
-<p>The above examples demonstrate how objects are created using the literal technique (you can also create javascript objects using constructor functions, but we&#8217;ll get to that in part two).
+<p>The above examples demonstrate how objects are created using the literal technique (you can also create javascript objects using constructor functions, but we'll get to that in part two).
 Literal objects are simple objects that you mold to your liking by setting properties. Since functions are also objects, you can define a property as a function
 and execute it:</p>
 
@@ -131,10 +60,10 @@ obj.sayHi = function() {
 obj.sayHi(); // returns hi
 </code></pre>
 
-<p>Note the familiar &#8220;()&#8221; syntax after the function call: this means execute me like I&#8217;m a function. If you leave that out, you return the function
-as if you&#8217;re calling the name property shown above.</p>
+<p>Note the familiar "()" syntax after the function call: this means execute me like I'm a function. If you leave that out, you return the function
+as if you're calling the name property shown above.</p>
 
-<p>It&#8217;s reasonable to think that javascript objects look a lot like Hashes, and if you were to compare JS objects to Ruby hash objects, they look syntactically similar.</p>
+<p>It's reasonable to think that javascript objects look a lot like Hashes, and if you were to compare JS objects to Ruby hash objects, they look syntactically similar.</p>
 
 <pre><code>hash = { name: "Adam" } #ruby hash
 puts hash[:name] #prints "Adam"
@@ -161,7 +90,7 @@ Only when you are within the context of an object, which occurs during a method 
 simple_obj = Simple.new
 </code></pre>
 
-<p>Before we talk about the instance variable <code>@var</code>, it&#8217;s a good time to discuss the <code>Simple</code> class above, because Ruby objects can not exist without classes.</p>
+<p>Before we talk about the instance variable <code>@var</code>, it's a good time to discuss the <code>Simple</code> class above, because Ruby objects can not exist without classes.</p>
 
 <h3>A (very) brief intro to Ruby classes</h3>
 
@@ -251,7 +180,7 @@ simple_obj.instance_variables
 -&gt; [:@var]
 </code></pre>
 
-<p>Now that &#8216;@var&#8217; is assigned, see it in the second call.</p>
+<p>Now that '@var' is assigned, see it in the second call.</p>
 
 <pre><code>simple_obj.instance_variable_get[:@var]
 -&gt; "hi!"
@@ -271,7 +200,7 @@ Kernal.instance_methods(false).grep(/instance_variable/)
 -&gt; [Class, Module, Object, Kernel, BasicObject]
 </code></pre>
 
-<p>Modules are another important feature of Ruby which accounts for a lot of it&#8217;s magic, and we will look at them extensively.</p>
+<p>Modules are another important feature of Ruby which accounts for a lot of it's magic, and we will look at them extensively.</p>
 
 <h2>Summary</h2>
 
@@ -280,17 +209,17 @@ Kernal.instance_methods(false).grep(/instance_variable/)
 <p>As data containers, the essential difference is that JS does not restrict access to properties. The language itself does not support any data encapsulation on objects directly. That does not mean you can
 not achieve this in other ways however through function scopes acting as modules.</p>
 
-<p>Ruby on the other hand enforces a certain level of data encapsulation by not providing a simple way to access it&#8217;s internal instance variables. You have to enter the object&#8217;s context through a method call
+<p>Ruby on the other hand enforces a certain level of data encapsulation by not providing a simple way to access it's internal instance variables. You have to enter the object's context through a method call
 to operate on instance variables. However, we just demonstrated above that there are methods on the <code>Kernel</code> module that allow you to peak into, change or get individual instance variables which break
 this data encapsulation.</p>
 
 <p>For me, Javascript objects are simple to understand, especially when created using the literal method. They are simply a key value pair repository of object references. This reason alone helped
-popularize the JSON notation since it&#8217;s just a textual representation of JS object literals. It&#8217;s not until we look at object
-creation in the next part that we see that JS objects can also be created via constructor functions. This opens up the concept of <em>prototypal inheritance</em>, which is javascript&#8217;s inheritance mechanism. This is where the JS
+popularize the JSON notation since it's just a textual representation of JS object literals. It's not until we look at object
+creation in the next part that we see that JS objects can also be created via constructor functions. This opens up the concept of <em>prototypal inheritance</em>, which is javascript's inheritance mechanism. This is where the JS
 object model starts to get a little more complicated.</p>
 
 <p>Answering what is a Ruby object was slightly more difficult because it required introductions to related concepts like classes, or even modules. A Ruby object is explicitly tied to the class that created it.
-It&#8217;s behaviour, specified by methods, are defined by it&#8217;s class. The concept of classes and modules gain more importance when we talk about object creation and inheritance.</p>
+It's behaviour, specified by methods, are defined by it's class. The concept of classes and modules gain more importance when we talk about object creation and inheritance.</p>
 
 <h3>Further Resources</h3>
 
@@ -300,81 +229,7 @@ It&#8217;s behaviour, specified by methods, are defined by it&#8217;s class. The
 <li>(Video available from Pragmatic bookshelf) The Ruby Object Model and Metaprogramming - Episode 1 (Dave Thomas)</li>
 </ul>
 
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2012/12/12/a-tale-of-two-object-models-javascript-and-ruby/">A tale of two object models: Javascript and Ruby (Part 1)</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("astantona", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/astantona" class="twitter-follow-button" data-show-count="false">Follow @astantona</a>
-  
-</section>
-
-
-  
-</aside>
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Adam Stanton -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-
-
-
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
-</body>
-</html>
+</feed>
