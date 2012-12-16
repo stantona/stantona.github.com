@@ -149,20 +149,6 @@ Now that '@var' is assigned, see it in the second call.
     simple_obj.instance_variable_get[:@var]
     -> "hi!"
 
-Just a quick note on these methods are belong to the `Kernel` *module*:
-
-    Simple.ancestors
-    -> [Simple, Object, Kernel, BasicObject]
-    Kernal.instance_methods(false).grep(/instance_variable/)
-    -> [:instance_variables, :instance_variable_get, :instance_variable_set, :instance_variable_defined? ]
-
-Note that `Kernel` is not derived from `Class` but is derived from `Module`. When looking at the ancestor chain, `Class` is a child of `Module`:
-
-    Class.ancestors
-    -> [Class, Module, Object, Kernel, BasicObject]
-
-Modules are another important feature of Ruby which accounts for a lot of it's magic, and we will look at them extensively.
-
 ## Summary
 
 In this part we examined the core fundamentals of objects in the context of JS and Ruby runtimes.
@@ -171,7 +157,7 @@ As data containers, the essential difference is that JS does not restrict access
 not achieve this in other ways however through function scopes acting as modules.
 
 Ruby on the other hand enforces a certain level of data encapsulation by not providing a simple way to access it's internal instance variables. You have to enter the object's context through a method call
-to operate on instance variables. However, we just demonstrated above that there are methods on the `Kernel` module that allow you to peak into, change or get individual instance variables which break
+to operate on instance variables. However, we just demonstrated above that there are methods that allow you to peak into, change or get individual instance variables which break
 this data encapsulation.
 
 For me, Javascript objects are simple to understand, especially when created using the literal method. They are simply a key value pair repository of object references. This reason alone helped
@@ -179,7 +165,7 @@ popularize the JSON notation since it's just a textual representation of JS obje
 creation in the next part that we see that JS objects can also be created via constructor functions. This opens up the concept of *prototypal inheritance*, which is javascript's inheritance mechanism. This is where the JS
 object model starts to get a little more complicated.
 
-Answering what is a Ruby object was slightly more difficult because it required introductions to related concepts like classes, or even modules. A Ruby object is explicitly tied to the class that created it.
+Answering what is a Ruby object was slightly more difficult because it required introductions to related concepts like classes. A Ruby object is explicitly tied to the class that created it.
 It's behaviour, specified by methods, are defined by it's class. The concept of classes and modules gain more importance when we talk about object creation and inheritance.
 
 ### Further Resources
