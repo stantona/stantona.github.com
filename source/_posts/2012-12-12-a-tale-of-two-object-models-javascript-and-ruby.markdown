@@ -7,7 +7,7 @@ categories: [Javascript, Ruby, Fundamentals]
 ---
 
 This past year I've been developing a web application with Ruby on Rails and javascript, and although javascript
-is not a new language for me, I've had an amazing time learning Ruby and it's powerful metaprogramming capabilities.
+is not a new language for me, I've had an amazing time learning Ruby and its powerful metaprogramming capabilities.
 As I regularly switch between the two languages (as you do buidling web applications) I've recently found myself comparing the two
 object models. I thought I would give my own personal take on the object models of
 both languages, cementing the fundamental differences while demonstrating the similarities 
@@ -155,7 +155,7 @@ In this part we examined the core fundamentals of objects in the context of JS a
 As data containers, the essential difference is that JS does not restrict access to properties. The language itself does not support any data encapsulation on objects directly. That does not mean you can
 not achieve this in other ways however through function scopes acting as modules.
 
-Ruby on the other hand enforces a certain level of data encapsulation by not providing a simple way to access it's internal instance variables. You have to enter the object's context through a method call
+Ruby on the other hand enforces a certain level of data encapsulation by not providing a simple way to access its internal instance variables. You have to enter the object's context through a method call
 to operate on instance variables. However, we just demonstrated above that there are methods that allow you to peak into, change or get individual instance variables which break
 this data encapsulation.
 
@@ -165,7 +165,7 @@ creation in the next part that we see that JS objects can also be created via co
 object model starts to get a little more complicated.
 
 Answering what is a Ruby object was slightly more difficult because it required introductions to related concepts like classes. A Ruby object is explicitly tied to the class that created it.
-It's behaviour, specified by methods, are defined by it's class. The concept of classes and modules gain more importance when we talk about object creation and inheritance.
+Its behaviour, specified by methods, are defined by its class. The concept of classes and modules gain more importance when we talk about object creation and inheritance.
 
 ### Further Resources
 
