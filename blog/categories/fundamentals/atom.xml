@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Fundamentals | stantona]]></title>
   <link href="http://stantona.github.com/blog/categories/fundamentals/atom.xml" rel="self"/>
   <link href="http://stantona.github.com/"/>
-  <updated>2012-12-15T16:30:24-08:00</updated>
+  <updated>2012-12-15T16:41:16-08:00</updated>
   <id>http://stantona.github.com/</id>
   <author>
     <name><![CDATA[Adam Stanton]]></name>
@@ -22,10 +22,9 @@
 is not a new language for me, I've had an amazing time learning Ruby and it's powerful metaprogramming capabilities.
 As I regularly switch between the two languages (as you do buidling web applications) I've recently found myself comparing the two
 object models. I thought I would give my own personal take on the object models of
-both languages, cementing the fundamental differences while demonstrating the similarities. Since this is a loaded topic, this will be a multi-part
-series (hopefully no more than four).</p>
+both languages, cementing the fundamental differences while demonstrating the similarities</p>
 
-<p>I thought I start with the fundamentals and ask what are objects in these two languages?</p>
+<p>Since this is a loaded topic, I thought I start with the fundamentals and ask what are objects in these two languages?</p>
 
 <h2>What are javascript objects?</h2>
 
