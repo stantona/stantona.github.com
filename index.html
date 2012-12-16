@@ -257,22 +257,6 @@ simple_obj.instance_variables
 -&gt; "hi!"
 </code></pre>
 
-<p>Just a quick note on these methods are belong to the <code>Kernel</code> <em>module</em>:</p>
-
-<pre><code>Simple.ancestors
--&gt; [Simple, Object, Kernel, BasicObject]
-Kernal.instance_methods(false).grep(/instance_variable/)
--&gt; [:instance_variables, :instance_variable_get, :instance_variable_set, :instance_variable_defined? ]
-</code></pre>
-
-<p>Note that <code>Kernel</code> is not derived from <code>Class</code> but is derived from <code>Module</code>. When looking at the ancestor chain, <code>Class</code> is a child of <code>Module</code>:</p>
-
-<pre><code>Class.ancestors
--&gt; [Class, Module, Object, Kernel, BasicObject]
-</code></pre>
-
-<p>Modules are another important feature of Ruby which accounts for a lot of it&#8217;s magic, and we will look at them extensively.</p>
-
 <h2>Summary</h2>
 
 <p>In this part we examined the core fundamentals of objects in the context of JS and Ruby runtimes.</p>
@@ -281,7 +265,7 @@ Kernal.instance_methods(false).grep(/instance_variable/)
 not achieve this in other ways however through function scopes acting as modules.</p>
 
 <p>Ruby on the other hand enforces a certain level of data encapsulation by not providing a simple way to access it&#8217;s internal instance variables. You have to enter the object&#8217;s context through a method call
-to operate on instance variables. However, we just demonstrated above that there are methods on the <code>Kernel</code> module that allow you to peak into, change or get individual instance variables which break
+to operate on instance variables. However, we just demonstrated above that there are methods that allow you to peak into, change or get individual instance variables which break
 this data encapsulation.</p>
 
 <p>For me, Javascript objects are simple to understand, especially when created using the literal method. They are simply a key value pair repository of object references. This reason alone helped
@@ -289,7 +273,7 @@ popularize the JSON notation since it&#8217;s just a textual representation of J
 creation in the next part that we see that JS objects can also be created via constructor functions. This opens up the concept of <em>prototypal inheritance</em>, which is javascript&#8217;s inheritance mechanism. This is where the JS
 object model starts to get a little more complicated.</p>
 
-<p>Answering what is a Ruby object was slightly more difficult because it required introductions to related concepts like classes, or even modules. A Ruby object is explicitly tied to the class that created it.
+<p>Answering what is a Ruby object was slightly more difficult because it required introductions to related concepts like classes. A Ruby object is explicitly tied to the class that created it.
 It&#8217;s behaviour, specified by methods, are defined by it&#8217;s class. The concept of classes and modules gain more importance when we talk about object creation and inheritance.</p>
 
 <h3>Further Resources</h3>
@@ -355,6 +339,19 @@ It&#8217;s behaviour, specified by methods, are defined by it&#8217;s class. The
 
 </footer>
   
+
+<script type="text/javascript">
+      var disqus_shortname = 'stantona';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 
