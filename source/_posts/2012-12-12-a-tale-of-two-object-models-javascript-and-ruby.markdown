@@ -48,10 +48,12 @@ It's reasonable to think that javascript objects look a lot like Hashes, and if 
     var obj = { name: "Adam" } // js object
     console.log(obj["name"]) //prints "Adam"
 
-As you can see, javascript objects are really just simple hashes. They are dictionary of properties to other objects and you can access these properties directly on the object.
+As you can see, javascript objects appear like simple dictionaries, a repository of properties that reference other objects and you can access these properties directly on the object.
+As a side note, various JS engines do not necessarily implement objects as hash tables under the hood. Check out the way [V8](https://developers.google.com/v8/design?hl=sv#prop_access)
+implements property access.
 
 ## What are Ruby objects?
-Where a JS object *is* a hash of properties that reference other objects, a ruby object *contains* a hash of instance variables that reference other objects. You can not access these
+Where a JS object *is a collection* of properties that reference other objects, a ruby object *contains a hash* of instance variables that reference other objects. You can not access these
 instance variables in the same way that you can access (read or write to) JS properties. Ruby enforces a level of data encapsulation which protects these variables.
 Only when you are within the context of an object, which occurs during a method call, you can create or alter instance variables.
 
@@ -169,8 +171,8 @@ Its behaviour, specified by methods, are defined by its class. The concept of cl
 
 ### Further Resources
 
-* Javascript: The Good Parts (Douglas Crockford)
-* Chapter 1 of Metaprogramming Ruby (Paulo Perotta)
-* (Video available from Pragmatic bookshelf) The Ruby Object Model and Metaprogramming - Episode 1 (Dave Thomas)
+* [Javascript: The Good Parts (Douglas Crockford)](http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742/ref=sr_1_1?ie=UTF8&qid=1355669318&sr=8-1&keywords=javascript+the+good+parts)
+* Chapter 1 of [Metaprogramming Ruby (Paulo Perotta)](http://pragprog.com/book/ppmetr/metaprogramming-ruby)
+* Episode 1 of [The Ruby Object Model and Metaprogramming (Dave Thomas)](http://pragprog.com/screencasts/v-dtrubyom/the-ruby-object-model-and-metaprogramming)
 
 
