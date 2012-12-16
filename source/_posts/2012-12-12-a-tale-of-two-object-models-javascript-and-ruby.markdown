@@ -10,10 +10,9 @@ This past year I've been developing a web application with Ruby on Rails and jav
 is not a new language for me, I've had an amazing time learning Ruby and it's powerful metaprogramming capabilities.
 As I regularly switch between the two languages (as you do buidling web applications) I've recently found myself comparing the two
 object models. I thought I would give my own personal take on the object models of
-both languages, cementing the fundamental differences while demonstrating the similarities. Since this is a loaded topic, this will be a multi-part
-series (hopefully no more than four).
+both languages, cementing the fundamental differences while demonstrating the similarities 
 
-I thought I start with the fundamentals and ask what are objects in these two languages?
+Since this is a loaded topic, I thought I start with the fundamentals and ask what are objects in these two languages?
 
 ## What are javascript objects?
 Javascript objects are composite data structures comprised of properties.
