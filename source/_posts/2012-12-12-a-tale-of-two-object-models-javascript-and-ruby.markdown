@@ -159,7 +159,7 @@ Ruby on the other hand enforces a certain level of data encapsulation by not pro
 to operate on instance variables. However, we just demonstrated above that there are methods that allow you to peak into, change or get individual instance variables which break
 this data encapsulation.
 
-For me, Javascript objects are simple to understand, especially when created using the literal method. They are simply a key value pair repository of object references. This reason alone helped
+Javascript objects are fairly simple, especially when created using the literal method. They are simply a key value pair repository of object references. This reason alone helped
 popularize the JSON notation since it's just a textual representation of JS object literals. It's not until we look at object
 creation in the next part that we see that JS objects can also be created via constructor functions. This opens up the concept of *prototypal inheritance*, which is javascript's inheritance mechanism. This is where the JS
 object model starts to get a little more complicated.
