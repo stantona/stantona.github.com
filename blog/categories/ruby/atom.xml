@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Adam Stanton]]></title>
   <link href="http://stantona.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://stantona.github.com/"/>
-  <updated>2012-12-16T22:55:04-08:00</updated>
+  <updated>2012-12-17T12:59:27-08:00</updated>
   <id>http://stantona.github.com/</id>
   <author>
     <name><![CDATA[Adam Stanton]]></name>
@@ -151,7 +151,7 @@ the results are the same as the original implementation. <code>attr_accessor</co
 =&gt; Class
 </code></p>
 
-<p>Notice that the class of Simple is Class. If you peak at the instance methods of Class:</p>
+<p>Notice that the class of Simple is Class. If you peek at the instance methods of Class:</p>
 
 <p><code>ruby
 [1] pry(main)&gt; Class.instance_methods(false)
@@ -179,7 +179,7 @@ you will find the <code>new</code> method. This method is the mechanism to creat
 The current context is the object referenced by <code>simple_obj</code>. The current context is an important concept in both JS and Ruby (which is where the <code>this</code> and <code>self</code> keywords come into play),
 and we will cover this in part two when we look at object creation.</p>
 
-<p>Remember when I said that instance variables are private to the object? Well this is not quite true. Ruby gives you a lot of power and has some interesting methods that allow you to peak inside the object:</p>
+<p>Remember when I said that instance variables are private to the object? Well this is not quite true. Ruby gives you a lot of power and has some interesting methods that allow you to peek inside the object:</p>
 
 <p><code>ruby
 [1] pry(main)&gt; simple_obj = Simple.new
@@ -209,7 +209,7 @@ Now that '@var' is assigned, see it in the second call.</p>
 not achieve this in other ways however through function scopes acting as modules.</p>
 
 <p>Ruby on the other hand enforces a certain level of data encapsulation by not providing a simple way to access its internal instance variables. You have to enter the object's context through a method call
-to operate on instance variables. However, we just demonstrated above that there are methods that allow you to peak into, change or get individual instance variables which break
+to operate on instance variables. However, we just demonstrated above that there are methods that allow you to peek into, change or get individual instance variables which break
 this data encapsulation.</p>
 
 <p>Javascript objects are quite simple especially when created using the literal method.
