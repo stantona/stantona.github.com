@@ -196,7 +196,7 @@ creation in the next part that we see that JS objects can also be created via co
 object model starts to get a little more involved.
 
 Ruby objects are  more involved since objects contain a reference to the class that created it. The object relies heavily on this relationship throughout its lifetime, since whenever a method is called, the object refers to its class (and potentially ancestor classes) to find and execute the method. 
-Classes (and it's parent class, Module) are what make metaprogramming is possible.
+Classes (and it's parent class, Module) are what make metaprogramming possible.
 
 There is obviously *a lot* more to the object models of both languages, so I hope you will tune in to part two when I look at how objects are created in both languages.
 
