@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>A tale of two object models: Javascript and Ruby (Part 1) - stantona</title>
+  <title>A tale of two object models: Javascript and Ruby (Part 1) - Adam Stanton</title>
   <meta name="author" content="Adam Stanton">
 
   
@@ -25,7 +25,7 @@ is not a new language for me, &hellip;">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="stantona" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="Adam Stanton" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -36,11 +36,9 @@ is not a new language for me, &hellip;">
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </head>
 
-<body   >
+<body    class="collapse-sidebar sidebar-footer" >
   <header role="banner"><hgroup>
-  <h1><a href="/">stantona</a></h1>
-  
-    <h2>Thoughts from a programmer.</h2>
+  <h1><a href="/">Adam Stanton</a></h1>
   
 </hgroup>
 
@@ -81,8 +79,6 @@ is not a new language for me, &hellip;">
 
 <time datetime="2012-12-12T23:22:00-08:00" pubdate data-updated="true">Dec 12<span>th</span>, 2012</time>
         
-         | <a href="#disqus_thread">Comments</a>
-        
       </p>
     
   </header>
@@ -94,54 +90,77 @@ As I regularly switch between the two languages (as you do buidling web applicat
 object models. I thought I would give my own personal take on the object models of
 both languages, cementing the fundamental differences while demonstrating the similarities</p>
 
-<p>Since this is a loaded topic, I thought I start with the fundamentals and ask what are objects in these two languages?</p>
+<p>This is a loaded topic, so I thought I would start with the fundamentals and talk about what objects are exactly in these two languages.</p>
 
 <h2>What are javascript objects?</h2>
 
 <p>Javascript objects are composite data structures comprised of properties.
 You can create simple objects and write to properties like so:</p>
 
-<pre><code>var obj = {};
-obj.name = "Adam"
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class='line'><span class="nx">obj</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;Adam&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>is the same as:</p>
 
-<pre><code>var obj = {
-  name: "Adam"
-};
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Adam&quot;</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>which is the same as:</p>
 
-<pre><code>var obj = {};
-obj["name"] = "Adam";
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class='line'><span class="nx">obj</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Adam&quot;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>The above examples demonstrate how objects are created using the literal technique (you can also create javascript objects using constructor functions, but we&#8217;ll get to that in part two).
 Literal objects are simple objects that you mold to your liking by setting properties. Since functions are also objects, you can define a property as a function
 and execute it:</p>
 
-<pre><code>var obj = {};
-obj.sayHi = function() {
-  return "hi";
-}
-obj.sayHi(); // returns hi
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class='line'><span class="nx">obj</span><span class="p">.</span><span class="nx">sayHi</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="s2">&quot;hi&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nx">obj</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span> <span class="c1">// returns hi</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>Note the familiar &#8220;()&#8221; syntax after the function call: this means execute me like I&#8217;m a function. If you leave that out, you return the function
+
+<p>Note the familiar <code>()</code> syntax after the function call: this means execute me like I&#8217;m a function. If you leave that out, you return the function
 as if you&#8217;re calling the name property shown above.</p>
 
 <p>It&#8217;s reasonable to think that javascript objects look a lot like Hashes, and if you were to compare JS objects to Ruby hash objects, they look syntactically similar.</p>
 
-<pre><code>hash = { name: "Adam" } #ruby hash
-puts hash[:name] #prints "Adam"
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Adam&quot;</span> <span class="p">}</span> <span class="c1">#ruby hash</span>
+</span><span class='line'><span class="nb">puts</span> <span class="nb">hash</span><span class="o">[</span><span class="ss">:name</span><span class="o">]</span> <span class="c1">#prints &quot;Adam&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
-var obj = { name: "Adam" } // js object
-console.log(obj["name"]) //prints "Adam"
-</code></pre>
 
-<p>As you can see, javascript objects appear like simple dictionaries, a repository of properties that reference other objects and you can access these properties directly on the object.
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Adam&quot;</span> <span class="p">}</span> <span class="c1">// js object</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span> <span class="c1">//prints &quot;Adam&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As you can see, JS objects appear like simple dictionaries, a repository of properties that reference other objects and you can access these properties directly on the object.
 As a side note, various JS engines do not necessarily implement objects as hash tables under the hood. Check out the way <a href="https://developers.google.com/v8/design?hl=sv#prop_access">V8</a>
 implements property access.</p>
 
@@ -151,15 +170,24 @@ implements property access.</p>
 instance variables in the same way that you can access (read or write to) JS properties. Ruby enforces a level of data encapsulation which protects these variables.
 Only when you are within the context of an object, which occurs during a method call, you can create or alter instance variables.</p>
 
-<pre><code>class Simple
-  def var
-    @var
-  end
-  def var=(val)
-    @var = val
-  end
-simple_obj = Simple.new
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Simple</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">var</span>
+</span><span class='line'>    <span class="vi">@var</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">var</span><span class="o">=</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@var</span> <span class="o">=</span> <span class="n">val</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="n">simple_obj</span> <span class="o">=</span> <span class="no">Simple</span><span class="o">.</span><span class="n">new</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Before we talk about the instance variable <code>@var</code>, it&#8217;s a good time to discuss the <code>Simple</code> class above, because Ruby objects can not exist without classes.</p>
 
@@ -167,36 +195,50 @@ simple_obj = Simple.new
 
 <p>Ruby is a class based language, whereas JS is not (although you can achieve level of class like behaviour). In Ruby, every object has an associated class:</p>
 
-<pre><code>2.class
--&gt; Fixnum
-simple_obj.class
--&gt; Simple
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="mi">2</span><span class="o">.</span><span class="n">class</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="no">Fixnum</span>
+</span><span class='line'><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">simple_obj</span><span class="o">.</span><span class="n">class</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="no">Simple</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>You could say that the JS equivalent to this method is the <code>__proto__</code> property, even though this represents the prototype object from which the JS object was created.
 This will be discussed in the length in part two.</p>
 
 <p>Ruby classes are a place to define methods, which give objects their behaviour:</p>
 
-<pre><code># return all instance methods of Simple (passing false excludes methods belonging to ancestors of Simple)
-Simple.instance_methods(false)
--&gt; [:var, :var=]
-</code></pre>
+<figure class='code'><figcaption><span>Passing false excludes instance methods from ancestor classes</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="no">Simple</span><span class="o">.</span><span class="n">instance_methods</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:var</span><span class="p">,</span> <span class="ss">:var</span><span class="o">=]</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Notice that the methods returned above are defined in our Simple class  These are the proverbial getters and setters that are familiar if you have used Java or C#. They provide
 access to the <code>@var</code> instance variable that we can not access otherwise. In Ruby, we can simplify the Simple class code by calling the class method <code>attr_accessor</code> to define these
 getters and setters for us:</p>
 
-<pre><code>class Simple
-  attr_accessor :var
-end
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Simple</span>
+</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:var</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>If you repeat the <code>instance_methods</code> call on our new implementation:</p>
 
-<pre><code>Simple.instance_methods(false)
--&gt; [:var, :var=]
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="no">Simple</span><span class="o">.</span><span class="n">instance_methods</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:var</span><span class="p">,</span> <span class="ss">:var</span><span class="o">=]</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>the results are the same as the original implementation. <code>attr_accessor</code> wrote these methods for us. This is a little bit of <em>metaprogramming</em> magic (which we will talk about in a future part).</p>
 
@@ -204,17 +246,25 @@ end
 
 <p>In Ruby, classes (like almost everything) are objects and so we can call methods directly on them:</p>
 
-<pre><code>Simple.is_a? Object
--&gt; true
-Simple.class
--&gt; Class
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="no">Simple</span><span class="o">.</span><span class="n">is_a?</span> <span class="no">Object</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="no">Simple</span><span class="o">.</span><span class="n">class</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="no">Class</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Notice that the class of Simple is Class. If you peak at the instance methods of Class:</p>
 
-<pre><code>Class.instance_methods(false)
--&gt; [:allocate, :new, :duplicate]
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="no">Class</span><span class="o">.</span><span class="n">instance_methods</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:allocate</span><span class="p">,</span> <span class="ss">:new</span><span class="p">,</span> <span class="ss">:duplicate</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>you will find the <code>new</code> method. This method is the mechanism to create a new object (covered in part two).</p>
 
@@ -224,12 +274,18 @@ Simple.class
 
 <p>So getting back to the <code>@var</code> instance variable. In the sample above, <code>@var</code> is accessible through the getters and setters:</p>
 
-<pre><code>simple_obj.var
--&gt; nil
-simple_obj.var = 4
-simple_obj.var
--&gt; 4
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">4</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">simple_obj</span><span class="o">.</span><span class="n">var</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="kp">nil</span>
+</span><span class='line'><span class="o">[</span><span class="mi">5</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">simple_obj</span><span class="o">.</span><span class="n">var</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span class='line'><span class="o">[</span><span class="mi">6</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">simple_obj</span><span class="o">.</span><span class="n">var</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="mi">4</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Note that this appears similar to JS access to properties, but in fact, <code>var</code> is a method call on <code>simple_obj</code>, which is the method <em>receiver</em>. In the JS equivalent, var would be a property, not a method (function) call.</p>
 
@@ -239,42 +295,55 @@ and we will cover this in part two when we look at object creation.</p>
 
 <p>Remember when I said that instance variables are private to the object? Well this is not quite true. Ruby gives you a lot of power and has some interesting methods that allow you to peak inside the object:</p>
 
-<pre><code>simple_obj = Simple.new
-simple_obj.instance_variables
--&gt; []
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">simple_obj</span> <span class="o">=</span> <span class="no">Simple</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">simple_obj</span><span class="o">.</span><span class="n">instance_variables</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="o">[]</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>At this point, no instance variables have been assigned to the object.</p>
 
-<pre><code>simple_obj.instance_variable_set[:@var] = "hi!"
-simple_obj.instance_variables
--&gt; [:@var]
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">simple_obj</span><span class="o">.</span><span class="n">instance_variable_set</span><span class="o">[</span><span class="ss">:@var</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;hi!&quot;</span>
+</span><span class='line'><span class="o">[</span><span class="mi">4</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">simple_obj</span><span class="o">.</span><span class="n">instance_variables</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:@var</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Now that &#8216;@var&#8217; is assigned, see it in the second call.</p>
 
-<pre><code>simple_obj.instance_variable_get[:@var]
--&gt; "hi!"
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">5</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">simple_obj</span><span class="o">.</span><span class="n">instance_variable_get</span><span class="o">[</span><span class="ss">:@var</span><span class="o">]</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;hi!&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <h2>Summary</h2>
 
-<p>In this part we examined the core fundamentals of objects in the context of JS and Ruby runtimes.</p>
+<p>At their very core objects in JS and Ruby are simply repositories of references to other objects.</p>
 
-<p>As data containers, the essential difference is that JS does not restrict access to properties. The language itself does not support any data encapsulation on objects directly. That does not mean you can
+<p>The essential difference is that JS does not restrict access to properties. The language itself does not support any data encapsulation on objects directly. That does not mean you can
 not achieve this in other ways however through function scopes acting as modules.</p>
 
 <p>Ruby on the other hand enforces a certain level of data encapsulation by not providing a simple way to access its internal instance variables. You have to enter the object&#8217;s context through a method call
 to operate on instance variables. However, we just demonstrated above that there are methods that allow you to peak into, change or get individual instance variables which break
 this data encapsulation.</p>
 
-<p>Javascript objects are fairly simple, especially when created using the literal method. They are simply a key value pair repository of object references. This reason alone helped
-popularize the JSON notation since it&#8217;s just a textual representation of JS object literals. It&#8217;s not until we look at object
+<p>Javascript objects are quite simple especially when created using the literal method.
+It&#8217;s not until we look at object
 creation in the next part that we see that JS objects can also be created via constructor functions. This opens up the concept of <em>prototypal inheritance</em>, which is javascript&#8217;s inheritance mechanism. This is where the JS
-object model starts to get a little more complicated.</p>
+object model starts to get a little more involved.</p>
 
-<p>Answering what is a Ruby object was slightly more difficult because it required introductions to related concepts like classes. A Ruby object is explicitly tied to the class that created it.
-Its behaviour, specified by methods, are defined by its class. The concept of classes and modules gain more importance when we talk about object creation and inheritance.</p>
+<p>Ruby objects are  more involved since objects contain a reference to the class that created it. The object relies heavily on this relationship throughout its lifetime, since whenever a method is called, the object refers to its class (and potentially ancestor classes) to find and execute the method.
+Classes (and it&#8217;s parent class, Module) are what make metaprogramming possible.</p>
+
+<p>There is obviously <em>a lot</em> more to the object models of both languages, so I hope you will tune in to part two when I look at how objects are created in both languages.</p>
 
 <h3>Further Resources</h3>
 
@@ -344,34 +413,7 @@ Its behaviour, specified by methods, are defined by its class. The concept of cl
 
 <aside class="sidebar">
   
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
     
-      <li class="post">
-        <a href="/blog/2012/12/12/a-tale-of-two-object-models-javascript-and-ruby/">A tale of two object models: Javascript and Ruby (Part 1)</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating...</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("astantona", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/astantona" class="twitter-follow-button" data-show-count="false">Follow @astantona</a>
-  
-</section>
-
-
   
 </aside>
 
