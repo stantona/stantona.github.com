@@ -1,2 +1,32 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
+
+#content .blog-index {
+  article h1 {
+    font-size: 1.2em;
+    font-weight: bolder;
+  }
+}
+
+body {
+  margin-top: 1.5em;
+}
+
+body > div > div { 
+  border-right-width: 0px;
+}
+
+header[role=banner] {
+  padding-top: 0em;
+  padding-bottom: 0em;
+  float: left;
+}
+
+body > nav {
+  font-size: 1.2em;
+  position: static;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
