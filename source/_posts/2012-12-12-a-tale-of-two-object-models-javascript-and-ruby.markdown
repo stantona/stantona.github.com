@@ -130,7 +130,7 @@ In Ruby, classes (like almost everything) are objects and so we can call methods
 => Class
 ```
 
-Notice that the class of Simple is Class. If you peak at the instance methods of Class:
+Notice that the class of Simple is Class. If you peek at the instance methods of Class:
 
 ``` ruby
 [1] pry(main)> Class.instance_methods(false)
@@ -157,7 +157,7 @@ The @ notation basically means: *access this instance variable in the scope of t
 The current context is the object referenced by `simple_obj`. The current context is an important concept in both JS and Ruby (which is where the `this` and `self` keywords come into play),
 and we will cover this in part two when we look at object creation.
 
-Remember when I said that instance variables are private to the object? Well this is not quite true. Ruby gives you a lot of power and has some interesting methods that allow you to peak inside the object:
+Remember when I said that instance variables are private to the object? Well this is not quite true. Ruby gives you a lot of power and has some interesting methods that allow you to peek inside the object:
 
 ``` ruby
 [1] pry(main)> simple_obj = Simple.new
@@ -187,7 +187,7 @@ The essential difference is that JS does not restrict access to properties. The 
 not achieve this in other ways however through function scopes acting as modules.
 
 Ruby on the other hand enforces a certain level of data encapsulation by not providing a simple way to access its internal instance variables. You have to enter the object's context through a method call
-to operate on instance variables. However, we just demonstrated above that there are methods that allow you to peak into, change or get individual instance variables which break
+to operate on instance variables. However, we just demonstrated above that there are methods that allow you to peek into, change or get individual instance variables which break
 this data encapsulation.
 
 Javascript objects are quite simple especially when created using the literal method.
