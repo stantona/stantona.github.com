@@ -168,14 +168,14 @@ Remember when I said that instance variables are private to the object? Well thi
 At this point, no instance variables have been assigned to the object.
 
 ``` ruby
-[3] pry(main)> simple_obj.instance_variable_set[:@var] = "hi!"
+[3] pry(main)> simple_obj.instance_variable_set(:@var, "hi!")
 [4] pry(main)> simple_obj.instance_variables
 => [:@var]
 ```
 Now that '@var' is assigned, see it in the second call.
 
 ``` ruby
-[5] pry(main)> simple_obj.instance_variable_get[:@var]
+[5] pry(main)> simple_obj.instance_variable_get(:@var)
 => "hi!"
 ```
 
