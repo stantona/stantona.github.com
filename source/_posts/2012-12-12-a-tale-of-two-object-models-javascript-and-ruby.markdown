@@ -101,7 +101,7 @@ Ruby classes are a place to define methods, which give objects their behaviour:
 => [:var, :var=]
 ```
 
-Notice that the methods returned above are defined in our Simple class  These are the proverbial getters and setters that are familiar if you have used Java or C#. They provide
+Notice that the methods returned above are defined in our Simple class.  These are the proverbial getters and setters that are familiar if you have used Java or C#. They provide
 access to the `@var` instance variable that we can not access otherwise. In Ruby, we can simplify the Simple class code by calling the class method `attr_accessor` to define these 
 getters and setters for us:
 
@@ -172,7 +172,7 @@ At this point, no instance variables have been assigned to the object.
 [4] pry(main)> simple_obj.instance_variables
 => [:@var]
 ```
-Now that '@var' is assigned, see it in the second call.
+Now that `@var` is assigned, see it in the second call.
 
 ``` ruby
 [5] pry(main)> simple_obj.instance_variable_get(:@var)
