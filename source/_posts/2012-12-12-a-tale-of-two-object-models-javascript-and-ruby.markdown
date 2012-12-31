@@ -14,6 +14,8 @@ both languages, cementing the fundamental differences while demonstrating the si
 
 This is a loaded topic, so I thought I would start with the fundamentals and talk about what objects are exactly in these two languages.
 
+<!-- more -->
+
 ## What are javascript objects?
 Javascript objects are composite data structures comprised of properties.
 You can create simple objects and write to properties like so:

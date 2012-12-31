@@ -10,6 +10,8 @@ This is a continuation of posts that explore the differences and similarities of
 My first post introduced the core of both object models as a repository of references to other objects.
 In this post, I want to expand on some of the concepts introduced in my previous post by comparing how objects are created.
 
+<!-- more -->
+
 ## How are Javascript objects created?
 
 In my previous post I showed how Javascript objects can be created using the literal method.
@@ -31,12 +33,12 @@ you can do the same thing with the `initialize` instance method (which we'll get
 The following describes what the `new` operator does:
 
 * creates a new object
-* sets the `constructor` property of the object to the constructor function that created it (`Simple` in the above example)
+* sets the `constructor` property of the object to the constructor function that is passed to it (`Simple` in the above example)
 * binds the new object to `this`
 * executes the constructor function.
 * returns the new object
 
-I think of the `new` operator as *overriding* how `this` is normally bound during a function invocation. When functions are invoked without `new, `this` is either bound to the global
+I think of the `new` operator as *overriding* how `this` is normally bound during a function invocation. When functions are invoked without `new`, `this` is either bound to the global
 object if not invoked on a method receiver, or to the *receiver* object for method functions. With `new`, `this` is bound to a brand new object.
 If you forget to use `new` when invoking `Simple` above, `this` will be bound to the global object (most likely `window` in a browser) and the `name`
 property will be added to that.
@@ -70,9 +72,9 @@ An interesting note to consider is that creating an object using constructing fu
 
 * The constructor function (since functions are objects)
 * (At least) one prototype object (which could in turn be created by other constructor functions)
-* The object itself (created from the constructor function), with its internal prototype referencing a clone of the constructor's prototype
+* The object itself (created from the constructor function), with its internal prototype referencing the constructor's prototype
 
-A lot of objects are at play when creating an object, enforcing the object orientation of Javascript.
+A lot of objects are at play when creating an object, emphasizing the object orientation of Javascript.
 
 ### How are Ruby objects created?
 
@@ -91,7 +93,7 @@ simple = Simple.new
 Classes provide a way of creating objects with defined behaviour (methods) via the `new` method.
 The important distinction is that `new` is a method of `Class`, and not a keyword operator as it is in Javascript.
 
-Like JS, `new` creates a brand new object and binds it to the current context, or `self`, Ruby's equivalent to Javascript's `this`. Ruby also creates a reference to the
+Like javascript, `new` creates a brand new object and binds it to the current context, or `self`, Ruby's equivalent to Javascript's `this`. Ruby also creates a reference to the
 class that created it:
 
 ``` ruby
@@ -135,21 +137,22 @@ end
 => Class
 ```
 
-`self` is bound to the class object referenced by `Simple` when used directly inside the class definition. Since this puts you in the context of 
-the `Simple` object (remembering that classses are objetcs), you can write expressions and statements as you would anywhere else. You can call methods
-the class itself, like `attr_accessor`, since `attr_accessor` is a *private instance method* of `Module`, the direct ancestor of `Class`.
+you enter the context of `Simple`, with `self` bound to that object (remembering that classes are objects) 
+Once you have *opened* a class, you can write expressions and statements as you would anywhere else:
 
 ``` ruby
-Class.ancestors
-=> [Class, Module, Object, Kernal, BaseObject]
-Module.private_instance_methods(false)
-=> [.., attr_accessor, ..]
+class Simple
+  if rand(1..2) % 2 > 0
+    attr_accessor :name
+  end
+end
 ```
 
-This shows Ruby's Object Orientated nature, the fact that classes
-are created like any other object at runtime.
+With the above code, `Simple` may or may not get the `name` accessor.
 
-Classes and Modules (the parent class of `Class`) are what give other objects their behaviour by allowing you to define methods.
+This shows Ruby's Object Orientated nature, the fact that classes are created like any other object at runtime.
+
+### Summary
 
 
 
