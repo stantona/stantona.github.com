@@ -14,8 +14,15 @@ In this post, I want to expand on some of the concepts introduced in my previous
 
 ## How are Javascript objects created?
 
-In my previous post I showed how Javascript objects can be created using the literal method.
-You can also create new objects using functions and the `new` operator:
+In Javascript, you can create objects very easily using the literal method:
+
+``` javascript
+simple_obj = {
+  name: "Adam"
+}
+```
+
+But you can also create new objects using functions and the `new` operator:
 
 ``` javascript
 function Simple() {
@@ -44,10 +51,11 @@ If you forget to use `new` when invoking `Simple` above, `this` will be bound to
 property will be added to that.
 
 So why bother using constructor functions if literal definitions are straight forward and concise? If you needed to create multiple objects,
-it would be pretty cumbersome to define them using the literal method over and over. Constructor functions provide a way to define behaviour which is shared
+it would be pretty cumbersome to define them using the literal method over and over (which I've actually seen in a pretty horrendous codebase). 
+Constructor functions provide a way to define behaviour which is shared
 by all new objects that are created by that function. This shared behaviour is made possible by the `Function.prototype` property.
-Javascript is a classless language, but the prototype property on a function the closest thing to any notion of classes. `Function.prototype` is just an object, so you can
-mold this object by adding properties:
+Javascript is a classless language, but the prototype property on a function the closest thing to any notion of classes. But the prototype *is not a class*
+but an ordinary object, and so you can mold this object by adding properties:
 
 ``` javascript
 function Simple() {
@@ -62,11 +70,15 @@ var simple = new Simple();
 simple.sayHi();
 => "Adam says Hi!"
 ```
-Every new object created from `Simple` adopts the sayHi method function. This is the idea of *prototypal inheritance*, sharing behaviour and creating an inheritance
-chain when you consider that a prototype object can also have its own prototype object. Method lookups follow this chain of prototypes until the end of the line. 
-We will talk about inheritance and method lookups in the next post.
+Every new object created from `Simple` adopts the `sayHi` method function. This is the idea of *prototypal inheritance*, sharing behaviour and creating an inheritance
+chain. The inheritance chain is a linked list of objects and method lookups follow this chain until the end of the line. You can get the prototype of an object by doing:
 
-Literal objects are always an `Object` and hence inherit behaviour from `Object.prototype`. You have *little* control over its prototype hence the disadvantage of using literal objects.
+``` javascript
+Object.getPrototypeOf(simple_obj);
+=> { sayHi: [Function]}
+```
+
+We will talk about inheritance and method lookups in the next post since this is a pretty important part of both object models.
 
 An interesting note to consider is that creating an object using constructing functions entails creating a number of other objects:
 
@@ -74,7 +86,7 @@ An interesting note to consider is that creating an object using constructing fu
 * (At least) one prototype object (which could in turn be created by other constructor functions)
 * The object itself (created from the constructor function), with its internal prototype referencing the constructor's prototype
 
-A lot of objects are at play when creating an object, emphasizing the object orientation of Javascript.
+A lot of objects are at play when creating an object, emphasizing that objects are ubiquitous, even during the creation of other objects.
 
 ### How are Ruby objects created?
 
@@ -113,8 +125,11 @@ instance variables, similar to how you would use Javascript constructor function
 
 ### More on Ruby classes
 
-As we just saw, classes provide the mechanism to create objects. Since classes in ruby are also objects, it's no wonder that you can 
-also create classes like this:
+Classes are a central concept in Ruby allowing you to create *classes* of objects. But a huge part in understanding Ruby's object model is to embrace the idea that
+clasess are also objects. This way of thinking may not come naturally if you're from a Java or C++ background. 
+
+Classes are objects and Ruby has special syntax for creating new class objects. But it's no wonder that you can
+also do this:
 
 ``` ruby
 Simple = Class.new do
@@ -124,9 +139,9 @@ Simple = Class.new do
 end
 ```
 
-This creates a new class object, referenced by `Simple` which is a constant, passing as a parameter to `new` a block that provides the method definitions.
+This also creates a new class object, referenced by `Simple` which is a constant, passing as a parameter to `new` a block that provides the method definitions.
 This reinforces the idea that instances of Classes are really just objects, that can be created like any other object.
-It's just that ruby provides a special syntax for creating class objects which is familiar to users of Java or C#. Furthermore, it's no surprising that when you define a class (or
+Furthermore, it's no surprising that when you define a class (or
 *open* a class in Ruby parlance):
 
 ``` ruby
@@ -137,7 +152,7 @@ end
 => Class
 ```
 
-you enter the context of `Simple`, with `self` bound to that object (remembering that classes are objects) 
+you enter the context of `Simple`, with `self` bound to that object (remembering that classes are objects)
 Once you have *opened* a class, you can write expressions and statements as you would anywhere else:
 
 ``` ruby
@@ -150,9 +165,21 @@ end
 
 With the above code, `Simple` may or may not get the `name` accessor.
 
-This shows Ruby's Object Orientated nature, the fact that classes are created like any other object at runtime.
+This shows that even though on the surface Ruby classes are similar to classes in C++ or Java, they are really just objects that create other objects with
+a *class* of behaviour. I don't think it's unreasonable to also think of them as *factory* objects, except that the factories define the behaviour
+of the objects that are created (through method definitions).
 
 ### Summary
+
+Javascript and Ruby provide a similar method for creating objects. They both require the interaction of other objects to create a new object, emphasizing
+how ubiquitous objects are in both languages. The important difference
+is that the type of objects and interactions involved is different in both langagues. Ruby uses
+objects inherited from `Class` to create new objects, whereas JS can either define literal objects, or invoke constructor functions (which
+are in turn objects themselves) to create new objects.
+
+Javascript allows the creation of new objects with shared behaviour via `Function.prototype`, the idea that new objects reference the prototype object of the constructor function,
+thus inheriting its behaviour. In Ruby, this is achieved through class objects and method definitions. In the next part we will take a look at method lookups and inheritance and
+see how it works in both languages.
 
 
 
