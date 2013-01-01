@@ -34,7 +34,7 @@ simple_obj = new Simple();
 
 The function above is a *constructor* function (when used with the new operator) because its purpose is to create new objects.
 
-Since this is a function, you can do whatever you need to do to initialize the object. In the sample we're just assigning properties. In Ruby
+Since this is a function, you can do whatever you need to do to initialize the object. In this sample we're just assigning properties. In Ruby
 you can do the same thing with the `initialize` instance method (which we'll get to in a bit).
 
 The following describes what the `new` operator does:
@@ -51,10 +51,10 @@ If you forget to use `new` when invoking `Simple` above, `this` will be bound to
 property will be added to that.
 
 So why bother using constructor functions if literal definitions are straight forward and concise? If you needed to create multiple objects,
-it would be pretty cumbersome to define them using the literal method over and over (which I've actually seen in a pretty horrendous codebase). 
+it would be pretty cumbersome to define them using the literal method over and over (which I've actually seen in a pretty horrendous code base). 
 Constructor functions provide a way to define behaviour which is shared
 by all new objects that are created by that function. This shared behaviour is made possible by the `Function.prototype` property.
-Javascript is a classless language, but the prototype property on a function the closest thing to any notion of classes. But the prototype *is not a class*
+Javascript is a classless language, but the prototype property on a function the closest thing to any notion of classes. The prototype *is not a class*
 but an ordinary object, and so you can mold this object by adding properties:
 
 ``` javascript
@@ -71,14 +71,14 @@ simple.sayHi();
 => "Adam says Hi!"
 ```
 Every new object created from `Simple` adopts the `sayHi` method function. This is the idea of *prototypal inheritance*, sharing behaviour and creating an inheritance
-chain. The inheritance chain is a linked list of objects and method lookups follow this chain until the end of the line. You can get the prototype of an object by doing:
+chain. The inheritance chain is a chain of objects and method look ups follow this chain until the end of the line. You can get the prototype of an object by doing:
 
 ``` javascript
 Object.getPrototypeOf(simple_obj);
 => { sayHi: [Function]}
 ```
 
-We will talk about inheritance and method lookups in the next post since this is a pretty important part of both object models.
+We will talk about inheritance and method look ups in the next post since this is a pretty important part of both object models.
 
 An interesting note to consider is that creating an object using constructing functions entails creating a number of other objects:
 
@@ -126,7 +126,7 @@ instance variables, similar to how you would use Javascript constructor function
 ### More on Ruby classes
 
 Classes are a central concept in Ruby allowing you to create *classes* of objects. But a huge part in understanding Ruby's object model is to embrace the idea that
-clasess are also objects. This way of thinking may not come naturally if you're from a Java or C++ background. 
+classes are also objects. This way of thinking may not come naturally if you're from a Java or C++ background. 
 
 Classes are objects and Ruby has special syntax for creating new class objects. But it's no wonder that you can
 also do this:
@@ -173,12 +173,12 @@ of the objects that are created (through method definitions).
 
 Javascript and Ruby provide a similar method for creating objects. They both require the interaction of other objects to create a new object, emphasizing
 how ubiquitous objects are in both languages. The important difference
-is that the type of objects and interactions involved is different in both langagues. Ruby uses
+is that the type of objects and interactions involved is different in both languages. Ruby uses
 objects inherited from `Class` to create new objects, whereas JS can either define literal objects, or invoke constructor functions (which
 are in turn objects themselves) to create new objects.
 
 Javascript allows the creation of new objects with shared behaviour via `Function.prototype`, the idea that new objects reference the prototype object of the constructor function,
-thus inheriting its behaviour. In Ruby, this is achieved through class objects and method definitions. In the next part we will take a look at method lookups and inheritance and
+thus inheriting its behaviour. In Ruby, this is achieved through class objects and method definitions. In the next part we will take a look at method look ups and inheritance and
 see how it works in both languages.
 
 
