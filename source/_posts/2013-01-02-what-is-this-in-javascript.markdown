@@ -22,8 +22,7 @@ function simple(name) {
 }
 ```
 
-What is the value of `this`? And what actually does `this` mean in Javascript? Quite simply, the value of `this` *depends* at call time on the caller
-and invocation.
+What is the value of `this`? And what actually does `this` mean in Javascript? 
 
 ### The current context
  
@@ -71,8 +70,8 @@ simple_obj = {
 ```
  
 the value of `this` refers to the global object and is not bound to `simple_obj` like its parent. This is because `log` is not invoked on a *method reciever*.
-This doesn't seem very intuitive when your thinking about *scope*, but consider the rule is that a function invocation requires a *reciever* for `this` to be bound, no matter
-how the function is scoped. That is why you see code like:
+This seems to be at odds with how scope works in Javascript, where you might think the value of `this` comes from the parent function through the
+*closure*, but consider the rule is that a function invocation requires a *reciever* for `this` to be bound, no matter how the function is scoped. That is why you see code like:
 
 ``` javascript
 simple_obj = {
@@ -90,6 +89,22 @@ simple_obj = {
 The `that` local variable is accessed through the closure, and hence the inner function is able to access the context of its parent function. As a Javascript developer,
 you would see this pattern used *a lot*.
 
+Note that if you have an independent function and you add it as an object property later, any reference to `this` inside the function will still be bound to the object that it's called on:
+
+``` javascript
+var simple = function(name) {
+  this.name = name;
+}
+obj = {
+  f: simple
+};
+
+obj.f("Adam");
+console.log(obj.name);
+```
+
+This emphasizes the *late binding* nature of Javascript.
+
 ### What about using the new operator?
 
 The `new` operator *overrides* how `this` is usually bound. When you invoke a function with `new`, you're invoking it as a constructor function, creating a *new object*
@@ -105,12 +120,12 @@ console.log(simple_obj.name);
 => "Adam"
 ```
 So we can adjust our rule to be:
-`this` is bound to the global object, except when function is invoked on an object, in which case `this` is bound to the object. The `new` operator overrides this rule
+*`this` is bound to the global object, except when function is invoked on an object, in which case `this` is bound to the object. The `new` operator overrides this rule
 by binding `this` to a new object.*
 
 Forgetting to use the `new` operator, and `this` will be bound to the global object.
 
-You can read more about how Javascript (and Ruby) objects are created here.
+You can read more about how Javascript (and Ruby) objects are created [here](/blog/2012/12/20/a-tale-of-two-object-models-javascript-and-ruby-part-2/).
 
 ### Call and Apply
 
@@ -129,7 +144,3 @@ console.log(obj.name);
 
 This allows you to take a function and explicitly determine which object `this` is bound to. *Note the call and apply work the same way, except that
 call accepts an array of function parameters as an argument, whereas with apply you pass those arguments individually.*
-
-So `call` and `apply` allow you to override the standard rules about how `this` is usually bound.
-
-
