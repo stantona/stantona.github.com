@@ -10,7 +10,7 @@ Lately I've been writing a series of posts on the core differences and similarit
 The idea is to explore the core fundamentals of the object models, since I'm a believer in really cementing the basics. It's tempting
 to gloss over the basics, especially as developers since your world is absorbed in detail. But to use such awesome tools like Ruby or Javascript
 effectively, you really need to understand some of the fundamental details of the language. One of the things that trumped me when first looking at
-Javascript was some confusion surrounding the `this` keyword. So I thought I'd jot down a kind of cheat sheet on the meaning of `this`.
+Javascript was some confusion surrounding the `this` keyword. So I thought I'd jot down my understanding of `this`.
 
 <!-- more -->
 
