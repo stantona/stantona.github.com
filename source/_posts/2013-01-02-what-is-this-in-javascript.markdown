@@ -61,7 +61,7 @@ However, there are some pretty unintuitive features of Javascript, and one of th
 simple_obj = {
   simple: function(name) {
     this.name = name;
-    log = function() {
+    var log = function() {
       console.log("name was set to:" + this.name);
     }
     log();
@@ -78,7 +78,7 @@ simple_obj = {
   simple: function(name) {
     this.name = name
     var that = this;
-    log = function() {
+    var log = function() {
       console.log("name was set to: " + that.name)
     }
     log();
