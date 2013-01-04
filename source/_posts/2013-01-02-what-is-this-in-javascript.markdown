@@ -127,4 +127,9 @@ simple.call(obj);
 console.log(obj.name);
 ```
 
+This allows you to take a function and explicitly determine which object `this` is bound to. *Note the call and apply work the same way, except that
+call accepts an array of function parameters as an argument, whereas with apply you pass those arguments individually.*
+
+So `call` and `apply` allow you to override the standard rules about how `this` is usually bound.
+
 
