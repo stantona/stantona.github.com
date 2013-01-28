@@ -6,10 +6,10 @@ comments: true
 categories: [Ruby, Javascript, Fundamentals]
 ---
 
-This is part 3 of my series of posts that explore the Javascript and Ruby object
-models. The goal of this series is to introduce the fundamental concepts of both
-languages by demonstrating their similarities and differences. If you haven't
-already, I recommend you check out parts
+This is part three of my series of posts that explore the Javascript and Ruby
+object models. The goal of this series is to introduce the fundamental concepts
+of both languages by demonstrating their similarities and differences. If you
+haven't already, I recommend you check out parts
 [one](/blog/2012/12/12/a-tale-of-two-object-models-javascript-and-ruby/) and
 [two](/blog/2012/12/20/a-tale-of-two-object-models-javascript-and-ruby-part-2/)
 which attempt to describe what objects are and how they are created.
