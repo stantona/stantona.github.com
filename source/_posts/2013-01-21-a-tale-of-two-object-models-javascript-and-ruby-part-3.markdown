@@ -16,13 +16,14 @@ which attempt to describe what objects are and how they are created.
 
 For this part, I was originally going to talk about Javacript's prototype system
 and compare it to Ruby's class system, but found that was too heavy to take on
-in a reasonably sized blog post. Instead, I'm going to talk mostly about
-Javascript's prototype system, but show how Ruby can do something similar
-and at the same time introduce a pretty cool feature of the Ruby class system.
+in a reasonably sized blog post. Instead, I'm still going to talk mostly about
+Javascript's prototype system, but show how Ruby can do something similar and at
+the same time introduce singleton classes, a pretty cool feature of the Ruby
+class system.
 
 <!-- more -->
 
-## Property lookups in Javascript
+## Property resolution in Javascript
 
 We saw in part two that Javascript has the `prototype` property on all `Function` objects.
 
@@ -37,7 +38,7 @@ Person.prototype = {
 };
 var person = new Person();
 person.say('hello');
-=> "anonymous says hello"
+=> anonymous says hello
 ```
 
 By default, the `prototype` property points to a plain object. You can add
@@ -50,14 +51,14 @@ Below is an alternative way of creating a new object, using Object's `create`
 function (introduced in Ecmascript 5):
 
 ``` javascript
-var personPrototype = {
+var person = {
   name: "anonymous",
   say: function(msg) {
     console.log(this.name + " says " + msg);
   }
-}
+};
 
-var person = Object.create(personPrototype);
+var adam = Object.create(person);
 Object.getPrototypeOf(adam);
 => {
   name: "anonymous",
@@ -65,17 +66,35 @@ Object.getPrototypeOf(adam);
 }
 ```
 
-This is a little bit of syntactic sugar around the arguably cumbersome way of
-creating constructor functions and molding the prototype object. It also shows
-how you can get the prototype of an object using `Object.getPrototypeOf`.
+This is a little bit of syntactic sugar around the cumbersome way of
+creating constructor functions and molding the prototype object.
+
+I can do some type checking by doing this:
+
+``` javascript
+adam instanceof person.constructor
+=> true
+```
+
+which is not as nice as doing:
+
+``` javascript
+adam instanceof Person
+=> true
+```
+if we had stuck with using our own `Person` constructor function.
 
 The important thing to realize is that the `person` instance (shown above) now
 has an *internal* reference to the prototype object.  Since I did not define a
 `name` property on `person`, it will first see if it exists on the *local*
 object, and since in this case it doesn't, it will traverse the prototype chain
 until it is found. Because it exists on the *most immediate* prototype object,
-it will obviously return the value that it references. This is in a nutshell how
-property look ups work in Javascript.
+it will return *anonymous*. This is in a nutshell how property look ups work in
+Javascript.
+
+Here's a diagram:
+
+![Javascript objects](/images/prototype_js.jpeg)
 
 To illustrate further:
 
@@ -129,7 +148,8 @@ the two objects that reference the `prototype` object can no longer find `name`.
 ## Prototypal inheritance in Ruby?
 
 In Ruby, we can take advantage of some interesting features of the language to
-implement the prototype pattern, even though it is not common practice.
+implement the prototype pattern, even though it's not something you would
+commonly do.
 
 ``` ruby
 # create a person object
@@ -153,26 +173,43 @@ adam.name = "Adam"
 
 Notice there is no class definition here to define behaviour. You may think that
 the above code is circumventing Ruby's class system, but what we're really doing
-is opening the object's *singleton class* adding behaviour to it.
+is opening the object's *singleton class* and adding behaviour to it.
 Singleton classes in Ruby are an important concept that allow you to add ad hoc
-behaviour to an object. *This new class is placed at the head of the ancestor
+behaviour to an object. *This class is placed at the head of the ancestor
 chain*. Because `person` is created from the `Object` class, the singleton
 class's super class is `Object`.
 
+![Singleton class](/images/singleton_class_rb.jpeg)
+
 ``` ruby
-prototype.singleton_methods
+person.singleton_methods
 => [:name, :name=]
-prototype.singleton_class.ancestors
+person.singleton_class.ancestors
 => [Object, Kernel, BasicObject]
-prototype.class
+person.class
 => Object
 ```
 
-Notice that you call `class` on prototype, it still returns `Object`. The
+Notice that you call `class` on person, it still returns `Object`. The
 singleton class is unseen in this case which is why some folks refer to them as
 *ghost classes*.
 
-You can see some parallels here with how prototypal inheritance works in
+The disadvantage of this approach is that we have no meaningful way to do type
+checking.  The `adam` object is always an `Object`, but how do we check that
+it's a person?
+
+``` ruby
+adam.singleton_class == person.singleton_class
+=> false
+```
+
+The reason why the above returns false is because the singleton class is also
+cloned ie, `adam` and `person` refer to two different singleton classes with the
+same behaviour. This demonstrates an important thing about singleton classes,
+that all objects get their own singleton class.
+
+You probably would not want to create your object relationships in such a way in
+Ruby but you can see some parallels here with how prototypal inheritance works in
 Javascript.
 
 ## Ruby Methods are really just message handlers
@@ -187,14 +224,37 @@ str = 3.send(:to_s)
 ```
 
 You can imagine the message (method call) is sent along a *message bus* (the
-class hierarchy). A message is captured if one of the classes in the hierarchy
-has a defined method of the same name as the message. If no method is found in
-the hierarchy, than a `NoMethodError` is raised. Notice this method of *sending
-a message along a bus* in the hope that it will be handled is very similar to
-how property resolution occurs in Javascript by traversing the prototype chain.
-A key difference however, is that if it's not found, it is handled by a private
-method on `BasicObject` called `missing_method`, which will actually raise the
-`NoMethodError` we just talked about. You can override this to do you're own
-method missing handling.
+class hierarchy). If we consider the diagram above, the *message bus* is the
+class hierarchy, starting from the singleton class object all the way to the
+`BasicObject` class object. A message is captured and handled if one of the
+classes in the hierarchy has a defined method of the same name as the message.
 
-## More on Ruby classes
+If no method is found in the hierarchy, than a `NoMethodError` is raised. Notice
+this method of *sending a message along a bus* in the hope that it will be
+handled is very similar to how property resolution occurs in Javascript by
+traversing the prototype chain.  A key difference however, is that if it's not
+found, it is handled by a private method on `BasicObject` called
+`missing_method`, which will actually raise the `NoMethodError` we just talked
+about. You can override this to do you're own method missing handling.
+
+## Summary
+
+Javascript's prototype system is rather straight forward and can be thought of
+as a linked list of objects.  The process of resolving a property starts on the
+*local object* and works all the way down the chain until you reach the `Object`
+prototype, which is the end of the line. Javascript's simple object model is
+offset by its awesome functional component (which is out scope for this series
+of posts), and this is where Javascript's magic lies.
+
+Ruby's magic on the other hand, is with it's class system, which was too much to
+cover in this blog post. Instead we demonstrated that we could setup a similar
+prototype system using Ruby, demonstrating singleton classes as a result. You
+obviously wouldn't use this pattern as a day to day tool, but it's
+interesting to find the parallels. We also introduced the idea that Ruby
+*broadcasts* messages along a class *message bus*. And that method definitions
+are simply message handlers that could be stationed anywhere along that bus.
+
+We have arguably covered most of the similarities between Ruby and Javascript.
+But we still have yet to talk in detail about Ruby's class system, which we will
+cover in part four. This is where we will show where Ruby's class system differs
+from Javascript's prototypal system.
