@@ -69,20 +69,14 @@ Object.getPrototypeOf(adam);
 This is a little bit of syntactic sugar around the cumbersome way of
 creating constructor functions and molding the prototype object.
 
-I can do some type checking by doing this:
-
-``` javascript
-adam instanceof person.constructor
-=> true
-```
-
-which is not as nice as doing:
+We will miss out on some type checking goodness if we adopt this way since
+`person` is created from the `Object` constructor (not the `Person`
+constructor). Or quite simply, we can't do this:
 
 ``` javascript
 adam instanceof Person
 => true
 ```
-if we had stuck with using our own `Person` constructor function.
 
 The important thing to realize is that the `person` instance (shown above) now
 has an *internal* reference to the prototype object.  Since I did not define a
