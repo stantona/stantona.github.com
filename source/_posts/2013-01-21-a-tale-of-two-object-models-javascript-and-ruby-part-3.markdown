@@ -139,7 +139,7 @@ person2.name === undefined
 
 the two objects that reference the `prototype` object can no longer find `name`.
 
-## Prototypal inheritance in Ruby?
+## Prototypes in Ruby?
 
 In Ruby, we can take advantage of some interesting features of the language to
 implement the prototype pattern, even though it's not something you would
